@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
+import VerifiedLogo from "../imgs/verified_seller.svg"
 
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
@@ -46,14 +47,18 @@ const ItemPreview = (props) => {
           <h3 className="card-title">{item.title}</h3>
           <p className="card-text crop-text-3">{item.description}</p>
         </Link>
-        <div className="d-flex flex-row align-items-center pt-2 item-footer">
-          <Link to={`/@${item.seller.username}`} className="flex-grow-1">
-            <img
-              src={item.seller.image}
-              alt={item.seller.username}
-              className="user-pic rounded-circle pr-1"
-            />
-          </Link>
+        <div className="d-flex flex-row align-items-center pt-2 item-footer w-100 justify-content-between">
+          <div className="d-flex flex-row align-items-center w-75">
+            <Link to={`/@${item.seller.username}`} className="">
+              <img
+                src={item.seller.image}
+                alt={item.seller.username}
+                className="user-pic rounded-circle pr-1"
+              />
+            </Link>
+            <img src={VerifiedLogo} className="px-2"/>
+            <h6>TOP SELLER</h6>
+          </div>
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
           </button>
